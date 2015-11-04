@@ -19,27 +19,28 @@ function sizeAndPositonSaqure(square, size, padding){
 
 function colorSquare(square, color){
 	 square.style.background = color;
-
+	 console.log(square.style.background);
 }
 
-function appendSquare(square){
+function appendToBody(children){
 	var body = document.getElementsByTagName('body')[0];
-	body.appendChild(square);
+	for(var i = 0; i< 99; i++){
+	body.appendChild(children[i]);
+	}
 }
 
 
 function createCheckeredBoard(){
+	var checkeredBoard = [];
 	for (var i = 0; i< 99; i++){
-		if(i %2 === 0){
-			var firstColor = 'rgba(204,0,255,' + (i / 100).toString() +')';
-			appendSquare(createSquare(firstColor,'11.1%'));
-		}
-		else{
-			var secondColor = 'rgba(0,216,255,' + (i / 100).toString() +')';
-			appendSquare(createSquare(secondColor,'11.1%'));
 
-		}
+		checkeredBoard.push(createSquare(generateRandomColor(),'11.1%'));
+
+		
 	}
+
+	appendToBody(checkeredBoard);
+	return checkeredBoard;
 }
 
 function generateRandomColor(){
@@ -51,4 +52,18 @@ function generateRandomColor(){
     return color.toString();
 }
 
-createCheckeredBoard();
+
+var squares = createCheckeredBoard();
+console.log(squares);
+
+function flashColors(){
+	setInterval(function (){
+		for(var i =0; i < squares.length; i++){
+		colorSquare(squares[i], generateRandomColor());
+		}
+		}, 2000);
+
+	
+}
+
+flashColors();
