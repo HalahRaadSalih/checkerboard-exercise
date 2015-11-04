@@ -30,7 +30,15 @@ function appendSquare(square){
 
 function createCheckeredBoard(){
 	for (var i = 0; i< 99; i++){
-			appendSquare(createSquare(generateRandomColor(),'11.1%'));
+		if(i %2 === 0){
+			var firstColor = 'rgba(204,0,255,' + (i / 100).toString() +')';
+			appendSquare(createSquare(firstColor,'11.1%'));
+		}
+		else{
+			var secondColor = 'rgba(0,216,255,' + (i / 100).toString() +')';
+			appendSquare(createSquare(secondColor,'11.1%'));
+
+		}
 	}
 }
 
